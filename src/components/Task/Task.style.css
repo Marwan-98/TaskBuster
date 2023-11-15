@@ -1,0 +1,65 @@
+.List-Item {
+    list-style: none;
+    user-select: none;
+}
+
+.List-Item, .List-Item-Details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.List-Item label {
+    flex-grow: 1;
+    cursor: pointer;
+    text-align: start;
+    width: 200px;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+.List-Item input {
+    display: none;
+}
+
+.List-Item .checkbox {
+    display: block;
+    position: relative;
+    font-size: 22px;
+    user-select: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.List-Item .checkbox::after {
+    height: 20px;
+    width: 20px;
+}
+
+.List-Item input:checked ~ .checkbox {
+    background-color: #295135;
+    transition: ease 100ms;
+    border-color: transparent;
+}
+
+.List-Item input:checked ~ .checkbox::after {
+    position: absolute;
+    content:'✓';
+    color: whitesmoke;
+    inset-inline-start: 3px;
+    inset-block-start: -2px;
+}
+
+.List-Item input:checked ~ label {
+    color: grey;
+    transition: ease 100ms;
+}
+
+.List-Item button {
+    width: 35px;
+    padding: 0;
+}
