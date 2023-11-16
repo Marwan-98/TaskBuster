@@ -23,12 +23,12 @@ const List = ({ filterCompleted = false }:{ filterCompleted?: boolean }) => {
   return (
     <ul className="List">
       {
-        list.map(({ id, text, completed }) => (
+        list.map(({ id, title, completed }) => (
           !filterCompleted || (filterCompleted && completed) ? (
             <Task
               key={id}
               taskId={id}
-              text={text}
+              text={title}
               completed={completed}
               handleDelete={handleDelete}
               handleCheck={handleCheck}

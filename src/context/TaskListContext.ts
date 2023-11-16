@@ -2,7 +2,9 @@ import { createContext } from 'react';
 
 export type Task = {
     id: string;
-    text: string;
+    title: string;
+    description: string;
+    dueDate: string;
     completed: boolean;
 }
 
