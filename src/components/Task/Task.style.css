@@ -1,8 +1,3 @@
-.List-Item {
-    list-style: none;
-    user-select: none;
-}
-
 .List-Item, .List-Item-Details {
     display: flex;
     justify-content: space-between;

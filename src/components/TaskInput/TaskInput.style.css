@@ -1,4 +1,6 @@
 .Task-Input {
     display: flex;
     gap: 10px;
+    width: fit-content;
+    margin: auto;
 }

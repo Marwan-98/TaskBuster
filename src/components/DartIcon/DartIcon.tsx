@@ -1,0 +1,17 @@
+const DartIcon = () => {
+  return (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 32 32"
+        width={20}
+        height={20}
+    >
+    <g data-name="45-Check">
+      <path d="M30 15v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5h10V0H7a7 7 0 0 0-7 7v18a7 7 0 0 0 7 7h18a7 7 0 0 0 7-7V15z" />
+      <path d="m7.71 13.29-1.42 1.42 7 7a1 1 0 0 0 1.41 0l16-16-1.41-1.42L14 19.59z" />
+    </g>
+  </svg>
+  )
+}
+
+export default DartIcon

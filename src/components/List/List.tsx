@@ -3,7 +3,7 @@ import { ListContext } from "../../context/TaskListContext";
 import Task from "../Task/Task";
 import './List.style.css'
 
-const List = () => {
+const List = ({ filterCompleted = false }:{ filterCompleted?: boolean }) => {
   const { list, setList } = useContext(ListContext)!;
 
   const handleDelete = (index: string) => {
@@ -23,15 +23,17 @@ const List = () => {
   return (
     <ul className="List">
       {
-        list.map(({ id, text, completed }, idx) => (
+        list.map(({ id, text, completed }) => (
+          !filterCompleted || (filterCompleted && completed) ? (
             <Task
-              key={idx}
-              taskId={ id }
+              key={id}
+              taskId={id}
               text={text}
               completed={completed}
               handleDelete={handleDelete}
               handleCheck={handleCheck}
             />
+          ) : null
         ))
       }
     </ul>

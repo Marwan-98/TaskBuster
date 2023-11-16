@@ -1,0 +1,29 @@
+.SideBar {
+    box-sizing: border-box;
+    height: 100vh;
+    top: 55px;
+    left: -425px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: fixed;
+    width: 305px;
+    background-color: #F4F4F6;
+    transition: linear 200ms;
+    z-index: 10;
+}
+
+.SideBar-List li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-block: 10px;
+}
+
+.SideBar-List li a {
+    flex-grow: 1;
+}
+
+.showNav {
+    left: 0;
+    transition: linear 200ms;
+}
