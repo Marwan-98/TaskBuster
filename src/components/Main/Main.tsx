@@ -9,6 +9,7 @@ import Form from "../Form/Form";
 import { taskModalFieldMap } from "./TaskModal.form";
 import { ListContext } from "../../context/TaskListContext";
 import { v4 as uuidv4 } from 'uuid';
+import MainHeader from "../MainHeader/MainHeader";
 
 const Main = () => {
   const { showNav } = useContext(ShowNavContext)!;
@@ -30,21 +31,24 @@ const Main = () => {
 
   return (
     <main className={ className }>
-      <button onClick={ () => setShowModal(true) }> Create a new task </button>
-        <Modal
-          title="Create New Task"
-          showModal={ showModal }
-          setShowModal={ setShowModal }
-        >
-          <Form
-            fieldMap={ taskModalFieldMap }
-            onSubmit={ createTask }
-          />
-        </Modal>
-        <Routes>
-          <Route path="/" element={ <List /> } />
-          <Route path="/completed" element={ <List filterCompleted /> } />
-        </Routes>
+      <Routes>
+        <Route path="/" element={ <MainHeader setShowModal={ setShowModal } title="Inbox" /> } />
+        <Route path="/completed" element={ <MainHeader setShowModal={ setShowModal } title="Completed" /> } />
+      </Routes>
+      <Modal
+        title="Create New Task"
+        showModal={ showModal }
+        setShowModal={ setShowModal }
+      >
+        <Form
+          fieldMap={ taskModalFieldMap }
+          onSubmit={ createTask }
+        />
+      </Modal>
+      <Routes>
+        <Route path="/" element={ <List /> } />
+        <Route path="/completed" element={ <List filterCompleted /> } />
+      </Routes>
     </main>
   )
 }

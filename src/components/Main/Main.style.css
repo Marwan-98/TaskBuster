@@ -3,6 +3,7 @@
     margin-block-start: 85px;
     transition: linear 200ms;
     height: 100vh;
+    padding-inline: 20px;
 }
 
 .showNav {
