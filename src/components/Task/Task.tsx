@@ -10,7 +10,6 @@ const Task = ({taskId, text, dueDate, completed, handleCheck, handleDelete}: { t
   const time_difference = new Date(dueDate).getTime() - currentDate.getTime();
 
   const { timeLeft, timeClassName } = formatTimeLeft(time_difference);
-  console.log(timeClassName);
 
   const taskDateClassName = classNames("ListItem-TimeLeft", timeClassName)
 
