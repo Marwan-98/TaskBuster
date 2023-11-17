@@ -13,7 +13,7 @@ export const taskModalFieldMap = [
     },
     {
         name: 'Due Date',
-        type: 'date',
+        type: 'datetime-local',
         id: 'dueDate',
         required: true
     }

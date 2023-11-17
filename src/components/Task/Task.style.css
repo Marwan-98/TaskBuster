@@ -1,16 +1,43 @@
-.List-Item, .List-Item-Details {
+.ListItem, .ListItem-Details {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.List-Item {
+.ListItem {
     box-shadow: 0px 0px 33px 2px rgba(0,0,0,0.1);
     padding: 10px;
     border-radius: 10px;
+    gap: 50px;
+    cursor: pointer;
 }
 
-.List-Item label {
+.ListItem-Details {
+    flex-grow: 1;
+}
+
+.ListItem-TimeLeft {
+    display: flex;
+    gap: 10px;
+    color: white;
+    font-weight: 500;
+    padding: 5px 15px;
+    border-radius: 30px;
+}
+
+.ListItem-Details .good {
+    background-color: green;
+}
+
+.ListItem-Details .near {
+    background-color: yellow;
+}
+
+.ListItem-Details .urgent {
+    background-color: red;
+}
+
+.ListItem label {
     flex-grow: 1;
     cursor: pointer;
     text-align: start;
@@ -19,11 +46,11 @@
     padding: 10px;
 }
 
-.List-Item input {
+.ListItem input {
     display: none;
 }
 
-.List-Item .checkbox {
+.ListItem .checkbox {
     display: block;
     position: relative;
     font-size: 22px;
@@ -35,18 +62,18 @@
     cursor: pointer;
 }
 
-.List-Item .checkbox::after {
+.ListItem .checkbox::after {
     height: 20px;
     width: 20px;
 }
 
-.List-Item input:checked ~ .checkbox {
+.ListItem input:checked ~ .checkbox {
     background-color: #295135;
     transition: ease 100ms;
     border-color: transparent;
 }
 
-.List-Item input:checked ~ .checkbox::after {
+.ListItem input:checked ~ .checkbox::after {
     position: absolute;
     content:'✓';
     color: whitesmoke;
@@ -54,12 +81,12 @@
     inset-block-start: -2px;
 }
 
-.List-Item input:checked ~ label {
+.ListItem input:checked ~ label {
     color: grey;
     transition: ease 100ms;
 }
 
-.List-Item button {
+.ListItem button {
     width: 35px;
     padding: 0;
 }
