@@ -9,18 +9,18 @@ export const formatTimeLeft = (time_difference: number) => {
 
     if (days_difference > 1) {
         return {
-            timeLeft: `${Math.floor(days_difference)} Days left`,
+            timeLeft: `${Math.floor(days_difference)} D left`,
             timeClassName: "good",
         };
     } else if (hours_difference < 1) {
         return {
-            timeLeft: `${Math.floor(minute_difference)} Minutes left`,
-            timeClassName: "near",
+            timeLeft: `${Math.floor(minute_difference)} M left`,
+            timeClassName: "urgent",
         };
     } else {
         return {
-            timeLeft: `${Math.floor(hours_difference)} Hours left`,
-            timeClassName: "urgent",
+            timeLeft: `${Math.floor(hours_difference)} H left`,
+            timeClassName: "near",
         };
     }
 };

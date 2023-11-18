@@ -47,7 +47,6 @@ const Main = () => {
       </Modal>
       <Routes>
         <Route path="/" element={ <List /> } />
-        <Route path="/completed" element={ <List filterCompleted /> } />
       </Routes>
     </main>
   )

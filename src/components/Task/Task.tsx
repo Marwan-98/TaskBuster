@@ -21,10 +21,12 @@ const Task = ({taskId, text, dueDate, completed, handleCheck, handleDelete}: { t
         <label htmlFor={`${taskId}`}>{ text }</label>
         {
           (time_difference > 1 && !completed) &&
-          <span className={ taskDateClassName }>
+          <div className={ taskDateClassName }>
             <ClockIcon />
-            { timeLeft }
-          </span>
+            <span>
+              { timeLeft }
+            </span>
+          </div>
         }
       </div>
       <Button

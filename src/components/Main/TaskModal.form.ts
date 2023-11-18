@@ -3,7 +3,10 @@ export const taskModalFieldMap = [
         name: 'Title',
         type: 'text',
         id: 'title',
-        required: true
+        required: true,
+        attributes: {
+            maxlength: 120
+        }
     },
     {
         name: 'Description',

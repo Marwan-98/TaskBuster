@@ -40,10 +40,10 @@ const Form = ({fieldMap, onSubmit}: { fieldMap: FormField[], onSubmit: (arg: Rec
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
         {
-            fieldMap.map(({name, type, id, required}) => (
+            fieldMap.map(({name, type, id, required, attributes}) => (
                 <div>
                     <label htmlFor={id}>{ name }</label>
-                    <input type={ type } id={id} name={id} required={ required } value={ formData[id] } onChange={(e) => handleChange(e)}/>
+                    <input type={ type } id={id} name={id} required={ required } value={ formData[id] } onChange={(e) => handleChange(e)} {...attributes}/>
                 </div>
             ))
         }

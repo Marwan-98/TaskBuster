@@ -3,4 +3,5 @@ export type FormField = {
     type: string;
     id: string;
     required: boolean;
+    attributes?: Record<string, string | number>
 }
