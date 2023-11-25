@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useRoutes } from "react-router-dom"
 import List from "../List/List"
 import './Main.style.css';
 import { ReactElement, useContext, useState } from "react";
@@ -46,9 +46,7 @@ const Main = (): ReactElement => {
           formTitle="CreateTask"
         />
       </Modal>
-      <Routes>
-        <Route path="/" element={ <List /> } />
-      </Routes>
+      { useRoutes(["/", "/completed"].map(path => ({ path, element: <List /> }))) }
     </main>
   )
 }

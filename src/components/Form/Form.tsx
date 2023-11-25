@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 import './Form.style.css';
-import { FormProps } from './Form.config';
+import { FormProps } from './Form.type';
 
 const Form = ({fieldMap, onSubmit, formValues, formTitle}: FormProps): ReactElement => {
     let stateMap: Record<string, string> = {};
@@ -11,7 +11,7 @@ const Form = ({fieldMap, onSubmit, formValues, formTitle}: FormProps): ReactElem
         if (id) {
             stateMap = {
                 ...stateMap,
-                [id]: formValues ? formValues[id] : ''
+                [id]: (field.type !== 'button' || 'submit') && formValues ? formValues[id] : ''
             }
         }
 

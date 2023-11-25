@@ -1,6 +1,8 @@
-import { ReactElement } from "react"
+import { ComponentPropsWithoutRef, ReactElement } from "react"
 
-const HamburgerIcon = (): ReactElement => {
+const HamburgerIcon = (props: ComponentPropsWithoutRef<'svg'>): ReactElement => {
+  const { onClick } = props;
+
   return (
     <svg
     viewBox="-0.5 0 25 25"
@@ -9,6 +11,7 @@ const HamburgerIcon = (): ReactElement => {
     height={40}
     width={40}
     className="Hamburger-Icon"
+    onClick={ onClick }
   >
     <g id="SVGRepo_bgCarrier" strokeWidth={0} />
     <g

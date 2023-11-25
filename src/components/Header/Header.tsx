@@ -8,9 +8,7 @@ const Header = (): ReactElement => {
 
   return (
     <header className="Header">
-      <span onClick={ () => setShowNav(!showNav) }>
-        <HamburgerIcon />
-      </span>
+        <HamburgerIcon onClick={ () => setShowNav(!showNav) } />
         <h1>Task Buster</h1>
     </header>
   )
