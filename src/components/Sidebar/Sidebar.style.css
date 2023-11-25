@@ -7,7 +7,7 @@
     overflow-y: hidden;
     position: fixed;
     width: 305px;
-    background-color: #F4F4F6;
+    background-color: var(--white-color);
     transition: linear 200ms;
     z-index: 10;
 }
