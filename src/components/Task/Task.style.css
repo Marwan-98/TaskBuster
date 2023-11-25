@@ -5,7 +5,7 @@
 }
 
 .ListItem {
-    box-shadow: 0px 0px 33px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
     padding: 10px;
     border-radius: 10px;
     gap: 50px;
@@ -90,4 +90,43 @@
 .ListItem button {
     width: 35px;
     padding: 0;
+}
+
+@media (max-width: 768px) {
+    .ListItem-Details {
+        flex-wrap: wrap;
+        justify-content: end;
+    }
+
+    .ListItem label {
+        display: -webkit-box;
+        flex-basis: 80%;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+       -webkit-line-clamp: 2;
+       padding-block: 5px;
+    }
+
+    .ListItem-TimeLeft {
+        font-size: 14px;
+        padding: 2px 8px;
+        gap: 2px;
+    }
+
+    .ListItem-TimeLeft svg {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+@media (max-width: 440px) {
+    .ListItem label {
+        flex-basis: 75%;
+    }
+}
+
+@media (max-width: 355px) {
+    .ListItem label {
+        flex-basis: 70%;
+    }
 }

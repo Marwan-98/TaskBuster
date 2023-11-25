@@ -6,7 +6,7 @@ import { ShowNavContext } from "../../context/ShowNavContext";
 import classNames from "classnames";
 import Modal from "../Modal/Modal";
 import Form from "../Form/Form";
-import { taskModalFieldMap } from "./TaskModal.form";
+import { createTaskModalFieldMap } from "./CreateTaskModal.form";
 import { ListContext } from "../../context/TaskListContext";
 import { v4 as uuidv4 } from 'uuid';
 import MainHeader from "../MainHeader/MainHeader";
@@ -41,8 +41,9 @@ const Main = () => {
         setShowModal={ setShowModal }
       >
         <Form
-          fieldMap={ taskModalFieldMap }
+          fieldMap={ createTaskModalFieldMap() }
           onSubmit={ createTask }
+          formTitle="CreateTask"
         />
       </Modal>
       <Routes>

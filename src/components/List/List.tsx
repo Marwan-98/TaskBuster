@@ -3,14 +3,25 @@ import { ListContext } from "../../context/TaskListContext";
 import Task from "../Task/Task";
 import './List.style.css'
 import ListControl from "../ListControl/ListControl";
+import Modal from "../Modal/Modal";
+import Form from "../Form/Form";
+import { updateTaskModalFieldMap } from "../Task/UpdateTaskModal.form";
 
 const List = () => {
   const { list, setList } = useContext(ListContext)!;
   const [ sortBy, setSortBy ] = useState('title');
   const [ filter, setFilter ] = useState('all');
+  const [ showModal, setShowModal ] = useState(false);
+  const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
+  const [ activeTask, setActiveTask ] = useState<string | null>(null);
+
+  const fieldMap = updateTaskModalFieldMap({
+    handleDelete: () => handleDelete(activeTask!)
+  })
 
   const handleDelete = (index: string) => {
     setList(list.filter((task) => task.id !== index));
+    setShowModal(false);
   };
 
   const handleCheck = (index: string) => {
@@ -22,6 +33,24 @@ const List = () => {
       setList(updatedList);
     }
   };
+
+  const updateTask = ({title, description, dueDate}: Record<string, string>) => {
+    const updatedList = list.map((task) => {
+      if (task.id === activeTask) {
+        return {
+          ...task,
+          title,
+          description,
+          dueDate
+        }
+      }
+
+      return task;
+    })
+
+    setList(updatedList);
+    setShowModal(false);
+  }
 
   const getTasks = () => {
     let sortedList = list;
@@ -65,19 +94,34 @@ const List = () => {
       </div>
       <ul className="List">
         {
-          getTasks().map(({ id, title, dueDate, completed }) => (
+          getTasks().map(({ id, title, description, dueDate, completed }) => (
               <Task
                 key={id}
                 taskId={id}
-                text={title}
+                title={title}
+                description={description}
                 dueDate={dueDate}
                 completed={completed}
-                handleDelete={handleDelete}
                 handleCheck={handleCheck}
+                setShowModal={setShowModal}
+                setFormValues={setFormValues}
+                setActiveTask={setActiveTask}
               />
           ))
         }
       </ul>
+      <Modal
+        title="Edit Task"
+        showModal={ showModal }
+        setShowModal={ setShowModal }
+      >
+        <Form
+          fieldMap={ fieldMap }
+          formValues={ formValues }
+          onSubmit={ updateTask }
+          formTitle="EditTask"
+        />
+      </Modal>
     </div>
   )
 }

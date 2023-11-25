@@ -5,6 +5,10 @@ import './Modal.style.css'
 const Modal = ({ children, title, showModal, setShowModal }: { children: JSX.Element, title: string, showModal: boolean, setShowModal: (state: boolean) => void }) => {
     const className = classNames("Modal", { showModal })
 
+    if (!showModal) {
+        return null;
+    }
+
     return (
     <div className={ className }>
         <div className='Modal-Container'>

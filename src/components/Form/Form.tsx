@@ -2,24 +2,31 @@ import { useState } from 'react';
 import './Form.style.css';
 import { FormField } from '../../types/GlobalTypes';
 
-const Form = ({fieldMap, onSubmit}: { fieldMap: FormField[], onSubmit: (arg: Record<string, string>) => void }) => {
+const Form = ({fieldMap, onSubmit, formValues, formTitle}:
+    { fieldMap: FormField[],
+      onSubmit: (arg: Record<string, string>) => void,
+      formValues?: Record<string,string> | null,
+      formTitle: string,
+    }) => {
     let stateMap = {};
 
     fieldMap.map(((field) => {
+        const { attributes: { id } } = field;
+
         stateMap = {
             ...stateMap,
-            [field.id]: ''
+            [id]: formValues ? formValues[id] : ''
         }
     }));
 
     const [formData, setFormData] = useState<Record<string, string>>({...stateMap});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target as HTMLInputElement;
+        const { id, value } = e.target as HTMLInputElement;
 
         setFormData({
             ...formData,
-            [name]: value
+            [id]: value
         })
     }
 
@@ -38,17 +45,19 @@ const Form = ({fieldMap, onSubmit}: { fieldMap: FormField[], onSubmit: (arg: Rec
     }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className={`${formTitle}-Form`}>
         {
-            fieldMap.map(({name, type, id, required, attributes}) => (
-                <div>
-                    <label htmlFor={id}>{ name }</label>
-                    <input type={ type } id={id} name={id} required={ required } value={ formData[id] } onChange={(e) => handleChange(e)} {...attributes}/>
-                </div>
-            ))
-        }
+            fieldMap.map(({type, attributes, renderLabel = true}) => {
+                const { name, id } = attributes;
 
-        <button type="submit">Submit</button>
+                return (
+                    <div key={id} id={ id }>
+                        {renderLabel && <label htmlFor={id}>{ name }</label>}
+                        <input type={ type } value={ formData[id] } onChange={(e) => handleChange(e)} {...attributes}/>
+                    </div>
+                )
+            })
+        }
     </form>
   )
 }
