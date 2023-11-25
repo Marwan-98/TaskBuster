@@ -1,4 +1,6 @@
-const HamburgerIcon = () => {
+import { ReactElement } from "react"
+
+const HamburgerIcon = (): ReactElement => {
   return (
     <svg
     viewBox="-0.5 0 25 25"

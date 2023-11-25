@@ -1,8 +1,9 @@
 import { createContext } from 'react';
 
-interface IShowNav {
-    showNav: boolean;
-    setShowNav: (task: boolean) => void;
-}
+export type ShowNavContextType = {
+  showNav: boolean;
+  setShowNav: (showNav: boolean) => void;
+};
 
-export const ShowNavContext = createContext<IShowNav | null>(null);
+
+export const ShowNavContext = createContext<ShowNavContextType | null>(null);

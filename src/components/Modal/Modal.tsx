@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import CloseIcon from '../CloseIcon/CloseIcon'
 import './Modal.style.css'
+import { ModalProps } from './Modal.type'
 
-const Modal = ({ children, title, showModal, setShowModal }: { children: JSX.Element, title: string, showModal: boolean, setShowModal: (state: boolean) => void }) => {
+const Modal = ({ children, title, showModal, setShowModal }: ModalProps): React.ReactElement | null => {
     const className = classNames("Modal", { showModal })
 
     if (!showModal) {

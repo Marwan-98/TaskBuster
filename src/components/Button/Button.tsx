@@ -1,4 +1,7 @@
-const Button = (props: { onClick: () => void, icon?: JSX.Element, title: string }) => {
+import { ReactElement } from "react";
+import { ButtonProps } from "./Button.type";
+
+const Button = (props: ButtonProps): ReactElement => {
   const { onClick, icon, title } = props;
 
   return (

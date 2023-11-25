@@ -1,4 +1,7 @@
-const ListControl = ({ sortBy, setSortBy, filter, setFilter }: { sortBy: string, setSortBy: (value: string) => void, filter: string, setFilter: (value: string) => void }) => {
+import { ReactElement } from "react";
+import { ListControlProps } from "./ListControl.type";
+
+const ListControl = ({ sortBy, setSortBy, filter, setFilter }: ListControlProps): ReactElement => {
 
   const handleChange = ({target: { value, id }}: React.ChangeEvent<HTMLSelectElement>) => {
     id === "sort-dropdown" ? setSortBy(value) : setFilter(value);

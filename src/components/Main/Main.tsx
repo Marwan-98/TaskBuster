@@ -1,19 +1,19 @@
 import { Route, Routes } from "react-router-dom"
 import List from "../List/List"
 import './Main.style.css';
-import { useContext, useState } from "react";
-import { ShowNavContext } from "../../context/ShowNavContext";
+import { ReactElement, useContext, useState } from "react";
+import { ShowNavContext, ShowNavContextType } from "../../context/ShowNavContext";
 import classNames from "classnames";
 import Modal from "../Modal/Modal";
 import Form from "../Form/Form";
 import { createTaskModalFieldMap } from "./CreateTaskModal.form";
-import { ListContext } from "../../context/TaskListContext";
+import { ListContext, TaskListContextType } from "../../context/TaskListContext";
 import { v4 as uuidv4 } from 'uuid';
 import MainHeader from "../MainHeader/MainHeader";
 
-const Main = () => {
-  const { showNav } = useContext(ShowNavContext)!;
-  const { list, setList } = useContext(ListContext)!;
+const Main = (): ReactElement => {
+  const { showNav } = useContext(ShowNavContext) as ShowNavContextType;
+  const { list, setList } = useContext(ListContext) as TaskListContextType;
   const [ showModal, setShowModal ] = useState(false);
 
   const className = classNames("Main", { showNav: !showNav });

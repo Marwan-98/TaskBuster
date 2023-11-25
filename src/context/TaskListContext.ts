@@ -8,9 +8,9 @@ export type Task = {
     completed: boolean;
 }
 
-interface ITaskListContext {
+export type TaskListContextType = {
     list: Task[];
     setList: (task: Task[]) => void;
 }
 
-export const ListContext = createContext<ITaskListContext | null>(null);
+export const ListContext = createContext<TaskListContextType | null>(null);

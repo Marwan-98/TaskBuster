@@ -2,18 +2,21 @@ import { formatTimeLeft } from './Task.config';
 import './Task.style.css';
 import classNames from 'classnames';
 import ClockIcon from '../ClockIcon/ClockIcon';
+import { TaskProps } from './Task.type';
 
-const Task = ({taskId, title, description, dueDate, completed, handleCheck, setActiveTask, setShowModal, setFormValues}:
-  { taskId: string,
-    title: string,
-    description: string,
-    dueDate: string,
-    completed: boolean,
-    setActiveTask: (id: string) => void,
-    setShowModal: (val: boolean) => void,
-    setFormValues: React.Dispatch<React.SetStateAction<null | Record<string,string>>>,
-    handleCheck: (index: string) => void
-  }) => {
+const Task = (
+  {
+    taskId,
+    title,
+    description,
+    dueDate,
+    completed,
+    handleCheck,
+    setActiveTask,
+    setShowModal,
+    setFormValues
+  }: TaskProps
+  ) => {
   const currentDate = new Date();
   const time_difference = new Date(dueDate).getTime() - currentDate.getTime();
 

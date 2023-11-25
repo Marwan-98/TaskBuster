@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import { ReactElement, useContext } from 'react';
 import HamburgerIcon from '../HamburgerIcon/HamburgerIcon';
 import './Header.style.css';
-import { ShowNavContext } from '../../context/ShowNavContext';
+import { ShowNavContext, ShowNavContextType } from '../../context/ShowNavContext';
 
-const Header = () => {
-  const { showNav, setShowNav } = useContext(ShowNavContext)!;
+const Header = (): ReactElement => {
+  const { showNav, setShowNav } = useContext(ShowNavContext) as ShowNavContextType;
 
   return (
     <header className="Header">

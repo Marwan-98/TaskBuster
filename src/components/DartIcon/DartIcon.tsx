@@ -1,4 +1,6 @@
-const DartIcon = () => {
+import { ReactElement } from "react"
+
+const DartIcon = (): ReactElement => {
   return (
     <svg
         xmlns="http://www.w3.org/2000/svg"

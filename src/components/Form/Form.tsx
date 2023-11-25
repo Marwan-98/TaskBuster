@@ -1,22 +1,20 @@
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import './Form.style.css';
-import { FormField } from '../../types/GlobalTypes';
+import { FormProps } from './Form.config';
 
-const Form = ({fieldMap, onSubmit, formValues, formTitle}:
-    { fieldMap: FormField[],
-      onSubmit: (arg: Record<string, string>) => void,
-      formValues?: Record<string,string> | null,
-      formTitle: string,
-    }) => {
-    let stateMap = {};
+const Form = ({fieldMap, onSubmit, formValues, formTitle}: FormProps): ReactElement => {
+    let stateMap: Record<string, string> = {};
 
     fieldMap.map(((field) => {
-        const { attributes: { id } } = field;
+        const { attributes: { id } = {} } = field;
 
-        stateMap = {
-            ...stateMap,
-            [id]: formValues ? formValues[id] : ''
+        if (id) {
+            stateMap = {
+                ...stateMap,
+                [id]: formValues ? formValues[id] : ''
+            }
         }
+
     }));
 
     const [formData, setFormData] = useState<Record<string, string>>({...stateMap});
@@ -47,13 +45,13 @@ const Form = ({fieldMap, onSubmit, formValues, formTitle}:
   return (
     <form onSubmit={(e) => handleSubmit(e)} className={`${formTitle}-Form`}>
         {
-            fieldMap.map(({type, attributes, renderLabel = true}) => {
+            fieldMap.map(({type, attributes = {}, events = {}, renderLabel = true}) => {
                 const { name, id } = attributes;
 
                 return (
                     <div key={id} id={ id }>
                         {renderLabel && <label htmlFor={id}>{ name }</label>}
-                        <input type={ type } value={ formData[id] } onChange={(e) => handleChange(e)} {...attributes}/>
+                        <input type={ type } value={ formData[id ?? ''] } onChange={(e) => handleChange(e)} {...attributes} {...events}/>
                     </div>
                 )
             })

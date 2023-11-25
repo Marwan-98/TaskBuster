@@ -1,4 +1,6 @@
-const TrashIcon = () => {
+import { ReactElement } from "react"
+
+const TrashIcon = (): ReactElement => {
   return (
     <svg
     viewBox="0 0 24 24"

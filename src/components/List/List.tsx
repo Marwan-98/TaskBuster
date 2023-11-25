@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { ListContext } from "../../context/TaskListContext";
+import { ReactElement, useContext, useState } from "react";
+import { ListContext, TaskListContextType } from "../../context/TaskListContext";
 import Task from "../Task/Task";
 import './List.style.css'
 import ListControl from "../ListControl/ListControl";
@@ -7,20 +7,16 @@ import Modal from "../Modal/Modal";
 import Form from "../Form/Form";
 import { updateTaskModalFieldMap } from "../Task/UpdateTaskModal.form";
 
-const List = () => {
-  const { list, setList } = useContext(ListContext)!;
+const List = (): ReactElement => {
+  const { list, setList } = useContext(ListContext) as TaskListContextType;
   const [ sortBy, setSortBy ] = useState('title');
   const [ filter, setFilter ] = useState('all');
   const [ showModal, setShowModal ] = useState(false);
   const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
   const [ activeTask, setActiveTask ] = useState<string | null>(null);
 
-  const fieldMap = updateTaskModalFieldMap({
-    handleDelete: () => handleDelete(activeTask!)
-  })
-
-  const handleDelete = (index: string) => {
-    setList(list.filter((task) => task.id !== index));
+  const handleDelete = () => {
+    setList(list.filter((task) => task.id !== activeTask));
     setShowModal(false);
   };
 
@@ -51,6 +47,10 @@ const List = () => {
     setList(updatedList);
     setShowModal(false);
   }
+
+  const fieldMap = updateTaskModalFieldMap({
+    handleDelete,
+  })
 
   const getTasks = () => {
     let sortedList = list;

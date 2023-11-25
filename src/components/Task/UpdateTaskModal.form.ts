@@ -1,4 +1,4 @@
-export const updateTaskModalFieldMap = (events: Record<string, (index: string) => void>) => {
+export const updateTaskModalFieldMap = (events: Record<string, () => void>) => {
     const { handleDelete } = events;
 
     return [
@@ -54,6 +54,8 @@ export const updateTaskModalFieldMap = (events: Record<string, (index: string) =
                 placeholder: 'Delete Task',
                 'aria-label': 'Delete Task',
                 id: 'delete',
+            },
+            events: {
                 onClick: handleDelete
             },
             renderLabel: false

@@ -1,4 +1,6 @@
-const InboxIcon = () => {
+import { ReactElement } from "react"
+
+const InboxIcon = (): ReactElement => {
   return (
     <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,6 @@
-const ClockIcon = () => {
+import { ReactElement } from "react"
+
+const ClockIcon = (): ReactElement => {
   return (
     <svg
     viewBox="0 0 24 24"
