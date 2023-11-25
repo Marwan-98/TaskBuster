@@ -19,21 +19,21 @@ const HamburgerIcon = (): ReactElement => {
     <g id="SVGRepo_iconCarrier">
       <path
         d="M2 12.32H22"
-        stroke="#02182b"
+        stroke="#02182B"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M2 18.32H22"
-        stroke="#02182b"
+        stroke="#02182B"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M2 6.32001H22"
-        stroke="#02182b"
+        stroke="#02182B"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"

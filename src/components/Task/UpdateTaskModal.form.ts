@@ -39,8 +39,7 @@ export const updateTaskModalFieldMap = (events: Record<string, () => void>) => {
             type: 'submit',
             attributes: {
                 name: 'Update Task',
-                value: 'Update Task',
-                placeholder: 'Update Task',
+                value: 'Update',
                 'aria-label': 'Update Task',
                 id: 'update',
             },
@@ -50,8 +49,7 @@ export const updateTaskModalFieldMap = (events: Record<string, () => void>) => {
             type: 'button',
             attributes: {
                 name: 'Delete Task',
-                value: 'Delete Task',
-                placeholder: 'Delete Task',
+                value: 'Delete',
                 'aria-label': 'Delete Task',
                 id: 'delete',
             },

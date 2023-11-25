@@ -21,6 +21,7 @@
     text-align: left;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
 }
 
 .Modal-Header {

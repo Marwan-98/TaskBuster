@@ -10,6 +10,19 @@
     margin-inline-start: 0;
 }
 
+.CreateTask-Form #submit {
+    width: fit-content;
+    margin-block: 0;
+    margin-inline: auto;
+    cursor: pointer;
+    transition: ease-in 150ms;
+}
+
+.CreateTask-Form #submit input {
+    background-color: var(--green-color);
+    color: var(--white-color);
+}
+
 @media (max-width: 768px) {
     .Main {
         margin-inline-start: 0;

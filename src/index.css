@@ -6,8 +6,8 @@
   --white-color: #F4F4F6;
   --black-color: #02182B;
   --orange-color: #F8924B;
-  --color-green: #36827F;
-  --color-red: #7B0D1E;
+  --green-color: #36827F;
+  --red-color: #7B0D1E;
 
   color: var(--black-color);
   font-synthesis: none;

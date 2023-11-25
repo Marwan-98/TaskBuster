@@ -57,12 +57,22 @@
     width: 20px;
 }
 
-.EditTask-Form #update, form #delete {
+.EditTask-Form #update, .EditTask-Form #delete {
     float: right;
     width: fit-content;
     margin-block: 0;
     margin-inline: 5px;
     cursor: pointer;
+    transition: ease-in 150ms;
+    color: var(--white-color);
+}
+
+.EditTask-Form #update input {
+    background-color: var(--green-color);
+}
+
+.EditTask-Form #delete input {
+    background-color: var(--red-color);
 }
 
 @media (max-width: 768px) {
