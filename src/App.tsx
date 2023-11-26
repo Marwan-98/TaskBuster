@@ -1,29 +1,27 @@
 import { useState } from "react";
 
 import './App.css'
-import { ListContext, Task } from "./context/TaskListContext";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { ShowNavContext } from "./context/ShowNavContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 function App() {
-  const [list, setList] = useState<Task[]>([]);
   const [showNav, setShowNav] = useState<boolean>(false);
 
   return (
-    <>
-    <BrowserRouter>
-      <ListContext.Provider value={{ list, setList }}>
+    <Provider store={store}>
+      <BrowserRouter>
         <ShowNavContext.Provider value={{ showNav, setShowNav }}>
           <Header />
           <Sidebar />
           <Main />
         </ShowNavContext.Provider>
-      </ListContext.Provider>
-    </BrowserRouter>
-    </>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

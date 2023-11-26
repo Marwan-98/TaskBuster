@@ -1,50 +1,34 @@
-import { ReactElement, useContext, useState } from "react";
-import { ListContext, TaskListContextType } from "../../context/TaskListContext";
+import { ReactElement, useState } from "react";
 import Task from "../Task/Task";
 import './List.style.css'
 import ListControl from "../ListControl/ListControl";
 import Modal from "../Modal/Modal";
 import Form from "../Form/Form";
 import { updateTaskModalFieldMap } from "../Task/UpdateTaskModal.form";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { checkTask, deleteTask, updateTask } from "../../store/list/listSlice";
 
 const List = (): ReactElement => {
-  const { list, setList } = useContext(ListContext) as TaskListContextType;
-  const [ sortBy, setSortBy ] = useState('title');
-  const [ filter, setFilter ] = useState('all');
+  const dispatch = useAppDispatch();
+  const list = useAppSelector(state => state.list.value);
+  const filter = useAppSelector(state => state.filter.value);
+  const sort = useAppSelector(state => state.sort.value);
+
   const [ showModal, setShowModal ] = useState(false);
   const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
   const [ activeTask, setActiveTask ] = useState<string | null>(null);
 
   const handleDelete = () => {
-    setList(list.filter((task) => task.id !== activeTask));
+    dispatch(deleteTask(activeTask!));
     setShowModal(false);
   };
 
   const handleCheck = (index: string) => {
-    const updatedList = [...list];
-    const taskToUpdate = updatedList.find((task) => task.id === index);
-
-    if (taskToUpdate) {
-      taskToUpdate.completed = !taskToUpdate.completed;
-      setList(updatedList);
-    }
+    dispatch(checkTask(index))
   };
 
-  const updateTask = ({title, description, dueDate}: Record<string, string>) => {
-    const updatedList = list.map((task) => {
-      if (task.id === activeTask) {
-        return {
-          ...task,
-          title,
-          description,
-          dueDate
-        }
-      }
-
-      return task;
-    })
-
-    setList(updatedList);
+  const handleSubmit = ({title, description, dueDate}: Record<string, string>) => {
+    dispatch(updateTask({ title, description, dueDate }))
     setShowModal(false);
   }
 
@@ -53,27 +37,27 @@ const List = (): ReactElement => {
   })
 
   const getTasks = () => {
-    let sortedList = list;
-    switch (sortBy) {
+    let sortedList = [...list];
+    switch (sort) {
       case "dueDate": {
-        sortedList = list.sort((taskA, taskB) => new Date(taskA.dueDate).getTime() - new Date(taskB.dueDate).getTime());
+        sortedList = sortedList.sort((taskA, taskB) => new Date(taskA.dueDate).getTime() - new Date(taskB.dueDate).getTime());
         break;
       }
 
       default: {
-        sortedList = list.sort((taskA, taskB) => taskA.title.localeCompare(taskB.title));
+        sortedList = sortedList.sort((taskA, taskB) => taskA.title.localeCompare(taskB.title));
         break;
       }
     }
 
     switch (filter) {
       case "completed": {
-        sortedList = list.filter((task) => task.completed);
+        sortedList = sortedList.filter((task) => task.completed);
         break;
       }
 
       case "pending": {
-        sortedList = list.filter((task) => !task.completed);
+        sortedList = sortedList.filter((task) => !task.completed);
         break;
       }
     }
@@ -90,7 +74,7 @@ const List = (): ReactElement => {
             { getTasks().length }
           </span>
         </div>
-        <ListControl sortBy={sortBy} setSortBy={setSortBy} filter={filter} setFilter={setFilter} />
+        <ListControl />
       </div>
       <ul className="List">
         {
@@ -118,7 +102,7 @@ const List = (): ReactElement => {
         <Form
           fieldMap={ fieldMap }
           formValues={ formValues }
-          onSubmit={ updateTask }
+          onSubmit={ handleSubmit }
           formTitle="EditTask"
         />
       </Modal>

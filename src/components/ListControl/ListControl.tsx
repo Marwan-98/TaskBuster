@@ -1,17 +1,22 @@
 import { ReactElement } from "react";
-import { ListControlProps } from "./ListControl.type";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectFilter } from "../../store/filter/filterSlice";
+import { selectSort } from "../../store/sort/sortSlice";
 
-const ListControl = ({ sortBy, setSortBy, filter, setFilter }: ListControlProps): ReactElement => {
+const ListControl = (): ReactElement => {
+  const sort = useAppSelector(state => state.sort.value);
+  const filter = useAppSelector(state => state.filter.value);
+  const dispatch = useAppDispatch();
 
   const handleChange = ({target: { value, id }}: React.ChangeEvent<HTMLSelectElement>) => {
-    id === "sort-dropdown" ? setSortBy(value) : setFilter(value);
+    id === "sort-dropdown" ? dispatch(selectSort(value)) : dispatch(selectFilter(value));
   };
 
   return (
     <div className="List-Control">
       <div className="List-Control-Sort">
         <label htmlFor="sort-dropdown">Sort: </label>
-        <select id="sort-dropdown" value={sortBy} onChange={handleChange}>
+        <select id="sort-dropdown" value={sort} onChange={handleChange}>
           <option value="title">Title</option>
           <option value="dueDate">Date</option>
         </select>

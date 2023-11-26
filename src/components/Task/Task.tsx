@@ -3,6 +3,8 @@ import './Task.style.css';
 import classNames from 'classnames';
 import ClockIcon from '../ClockIcon/ClockIcon';
 import { TaskProps } from './Task.type';
+import { useAppDispatch } from '../../store/hooks';
+import { selectTask } from '../../store/list/listSlice';
 
 const Task = (
   {
@@ -17,6 +19,7 @@ const Task = (
     setFormValues
   }: TaskProps
   ) => {
+  const dispatch = useAppDispatch();
   const currentDate = new Date();
   const time_difference = new Date(dueDate).getTime() - currentDate.getTime();
 
@@ -34,6 +37,7 @@ const Task = (
     setFormValues(formValues);
     setShowModal(true);
     setActiveTask(taskId);
+    dispatch(selectTask(taskId));
   }
 
   return (
