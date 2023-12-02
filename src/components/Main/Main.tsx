@@ -1,4 +1,4 @@
-import { Route, Routes, useRoutes } from "react-router-dom"
+import { Navigate, Route, Routes, useRoutes } from "react-router-dom"
 import List from "../List/List"
 import './Main.style.css';
 import { ReactElement, useContext, useState } from "react";
@@ -33,6 +33,7 @@ const Main = (): ReactElement => {
   return (
     <main className={ className }>
       <Routes>
+        <Route path="/" element={ <Navigate to="/inbox" /> } />
         <Route path="/inbox" element={ <MainHeader setShowModal={ setShowModal } title="Inbox" /> } />
         <Route path="/completed" element={ <MainHeader setShowModal={ setShowModal } title="Completed" /> } />
       </Routes>
