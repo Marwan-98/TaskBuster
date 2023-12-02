@@ -2,7 +2,7 @@ import { ReactElement, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useLocation } from "react-router-dom";
 import { updateViewOptions } from "../../store/list/listSlice";
-import { getLocalViewOptions, setLocalViewOptions } from "../../util/LocalStorage/localStorage";
+import { setLocalViewOptions } from "../../util/LocalStorage/localStorage";
 import { getCurrentDirectory } from "../../util/Url/url";
 
 const ListControl = (): ReactElement => {
@@ -18,7 +18,6 @@ const ListControl = (): ReactElement => {
     }
   } = useAppSelector(state => state.list);
 
-  const localViewOptions = getLocalViewOptions(currentPage);
 
   const dispatch = useAppDispatch();
 
@@ -27,20 +26,6 @@ const ListControl = (): ReactElement => {
   };
 
   useEffect(() => {
-    if (!localViewOptions) {
-      setLocalViewOptions({
-        ...viewOptions,
-        [currentPage]: {
-          sort,
-          filter
-        }
-      });
-
-      dispatch(updateViewOptions({ currentPage }));
-
-      return;
-    }
-
     setLocalViewOptions(viewOptions);
   });
 
