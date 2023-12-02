@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import Task from "../Task/Task";
 import './List.style.css'
 import ListControl from "../ListControl/ListControl";
@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { checkTask, deleteTask, updateTask } from "../../store/list/listSlice";
 import { useLocation } from "react-router-dom";
 import { getCurrentDirectory } from "../../util/Url/url";
+import { setLocalTaskList } from "../../util/LocalStorage/localStorage";
 
 const List = (): ReactElement => {
   const currentPage = getCurrentDirectory(useLocation());
@@ -21,6 +22,10 @@ const List = (): ReactElement => {
   const [ activeTask, setActiveTask ] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setLocalTaskList(list);
+  }, [list]);
 
   const handleDelete = () => {
     dispatch(deleteTask(activeTask!));

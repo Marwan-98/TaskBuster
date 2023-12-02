@@ -1,3 +1,4 @@
+import { Task } from "../../components/Task/Task.type";
 import { viewOptionsType } from "./localStorage.config";
 
 export const setLocalViewOptions = (value: Record<string, viewOptionsType>) => {
@@ -24,4 +25,8 @@ export const getLocalViewOptions = (activeView: string) => {
     }
 
     return false;
+}
+
+export const setLocalTaskList = (list: Task[]) => {
+    localStorage.setItem('taskList', JSON.stringify(list));
 }

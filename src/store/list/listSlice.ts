@@ -8,7 +8,7 @@ interface ListState {
 }
 
 const initialState: ListState = {
-    value: [],
+    value: localStorage.getItem('taskList') ? JSON.parse(localStorage.getItem('taskList')!) : [],
     activeTask: null,
     viewOptions: localStorage.getItem('viewOptions') ? JSON.parse(localStorage.getItem('viewOptions')!) : {},
 }
