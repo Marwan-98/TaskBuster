@@ -1,30 +1,62 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectFilter } from "../../store/filter/filterSlice";
-import { selectSort } from "../../store/sort/sortSlice";
+import { useLocation } from "react-router-dom";
+import { updateViewOptions } from "../../store/list/listSlice";
+import { getLocalViewOptions, setLocalViewOptions } from "../../util/LocalStorage/localStorage";
+import { getCurrentDirectory } from "../../util/Url/url";
 
 const ListControl = (): ReactElement => {
-  const sort = useAppSelector(state => state.sort.value);
-  const filter = useAppSelector(state => state.filter.value);
+  const currentPage = getCurrentDirectory(useLocation());
+
+  const {
+    viewOptions,
+    viewOptions: {
+      [currentPage]: {
+        sort = 'title',
+        filter = 'all'
+      } = {}
+    }
+  } = useAppSelector(state => state.list);
+
+  const localViewOptions = getLocalViewOptions(currentPage);
+
   const dispatch = useAppDispatch();
 
-  const handleChange = ({target: { value, id }}: React.ChangeEvent<HTMLSelectElement>) => {
-    id === "sort-dropdown" ? dispatch(selectSort(value)) : dispatch(selectFilter(value));
+  const handleChange = ({target: { value, id: option }}: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(updateViewOptions({ currentPage, option, value }));
   };
+
+  useEffect(() => {
+    if (!localViewOptions) {
+      setLocalViewOptions({
+        ...viewOptions,
+        [currentPage]: {
+          sort,
+          filter
+        }
+      });
+
+      dispatch(updateViewOptions({ currentPage }));
+
+      return;
+    }
+
+    setLocalViewOptions(viewOptions);
+  });
 
   return (
     <div className="List-Control">
       <div className="List-Control-Sort">
-        <label htmlFor="sort-dropdown">Sort: </label>
-        <select id="sort-dropdown" value={sort} onChange={handleChange}>
+        <label htmlFor="sort">Sort: </label>
+        <select id="sort" value={ sort } onChange={handleChange}>
           <option value="title">Title</option>
           <option value="dueDate">Date</option>
         </select>
       </div>
 
       <div className="List-Control-Filter">
-        <label htmlFor="filter-dropdown">Show: </label>
-        <select id="filter-dropdown" value={filter} onChange={handleChange}>
+        <label htmlFor="filter">Show: </label>
+        <select id="filter" value={ filter } onChange={handleChange}>
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="pending">Pending</option>

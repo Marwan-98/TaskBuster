@@ -18,7 +18,7 @@ const Sidebar = () => {
                 <ul className="SideBar-List">
                     <li>
                         <InboxIcon />
-                        <Link to="/">Inbox</Link>
+                        <Link to="/inbox">Inbox</Link>
                     </li>
                     <li>
                         <DartIcon />

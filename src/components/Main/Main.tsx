@@ -33,7 +33,7 @@ const Main = (): ReactElement => {
   return (
     <main className={ className }>
       <Routes>
-        <Route path="/" element={ <MainHeader setShowModal={ setShowModal } title="Inbox" /> } />
+        <Route path="/inbox" element={ <MainHeader setShowModal={ setShowModal } title="Inbox" /> } />
         <Route path="/completed" element={ <MainHeader setShowModal={ setShowModal } title="Completed" /> } />
       </Routes>
       <Modal
@@ -47,7 +47,7 @@ const Main = (): ReactElement => {
           formTitle="CreateTask"
         />
       </Modal>
-      { useRoutes(["/", "/completed"].map(path => ({ path, element: <List /> }))) }
+      { useRoutes(["/inbox", "/completed"].map(path => ({ path, element: <List /> }))) }
     </main>
   )
 }

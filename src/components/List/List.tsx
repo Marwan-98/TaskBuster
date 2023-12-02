@@ -7,16 +7,20 @@ import Form from "../Form/Form";
 import { updateTaskModalFieldMap } from "../Task/UpdateTaskModal.form";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { checkTask, deleteTask, updateTask } from "../../store/list/listSlice";
+import { useLocation } from "react-router-dom";
+import { getCurrentDirectory } from "../../util/Url/url";
 
 const List = (): ReactElement => {
-  const dispatch = useAppDispatch();
+  const currentPage = getCurrentDirectory(useLocation());
+
   const list = useAppSelector(state => state.list.value);
-  const filter = useAppSelector(state => state.filter.value);
-  const sort = useAppSelector(state => state.sort.value);
+  const { [currentPage]: { sort = 'title', filter = 'all' } = {} } = useAppSelector(state => state.list.viewOptions);
 
   const [ showModal, setShowModal ] = useState(false);
   const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
   const [ activeTask, setActiveTask ] = useState<string | null>(null);
+
+  const dispatch = useAppDispatch();
 
   const handleDelete = () => {
     dispatch(deleteTask(activeTask!));

@@ -1,14 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Task } from "../../components/Task/Task.type";
-
+import { viewOptionsType } from "../../util/LocalStorage/localStorage.config";
 interface ListState {
     value: Task[]
-    activeTask: string | null
+    activeTask: string | null,
+    viewOptions: Record<string, viewOptionsType>
 }
 
 const initialState: ListState = {
     value: [],
     activeTask: null,
+    viewOptions: localStorage.getItem('viewOptions') ? JSON.parse(localStorage.getItem('viewOptions')!) : {},
 }
 
 export const listSlice = createSlice({
@@ -69,10 +71,33 @@ export const listSlice = createSlice({
         },
         selectTask: (state, action: PayloadAction<string>) => {
             state.activeTask = action.payload;
+        },
+        updateViewOptions: (state, action: PayloadAction<Record<string, string>>) => {
+            const { currentPage, option, value } = action.payload;
+
+            if (!option && !value) {
+                state.viewOptions = {
+                    ...state.viewOptions,
+                    [currentPage]: {
+                        filter: 'all',
+                        sort: 'title'
+                    }
+                };
+
+                return;
+            }
+
+            state.viewOptions = {
+                ...state.viewOptions,
+                [currentPage]: {
+                    ...state.viewOptions[currentPage],
+                    [option]: value
+                }
+            };
         }
     }
 })
 
-export const { addTask, deleteTask, checkTask, updateTask, selectTask } = listSlice.actions;
+export const { addTask, deleteTask, checkTask, updateTask, selectTask, updateViewOptions } = listSlice.actions;
 
 export const listReducer = listSlice.reducer;
