@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import DartIcon from '../DartIcon/DartIcon';
 import InboxIcon from '../InboxIcon/InboxIcon';
 import './Sidebar.style.css';
 import classNames from "classnames";
@@ -44,12 +43,6 @@ const Sidebar = () => {
                         <Link to="/inbox">
                           <InboxIcon />
                           Inbox
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/completed">
-                          <DartIcon />
-                          Completed
                         </Link>
                     </li>
                 </ul>
