@@ -15,3 +15,7 @@ form div:not(:first-child) {
 form textarea {
     resize: none;
 }
+
+form #submit {
+    cursor: pointer;
+}

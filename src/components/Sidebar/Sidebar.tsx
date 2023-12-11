@@ -27,6 +27,7 @@ const Sidebar = () => {
 
   const handleSubmit = ({ title }: Record<string, string>) => {
     dispatch(addProject(title));
+    setShowModal(false);
   }
 
   useEffect(() => {
