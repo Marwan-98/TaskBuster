@@ -1,5 +1,6 @@
-export const createTaskModalFieldMap = () => {
+import { FormField } from "../Form/Form.type";
 
+export const createTaskModalFieldMap = ({ projectList }: { projectList: string[] }): FormField[] => {
     return [
         {
             type: 'text',
@@ -14,7 +15,7 @@ export const createTaskModalFieldMap = () => {
             }
         },
         {
-            type: 'text',
+            type: 'text-area',
             attributes: {
                 name: 'Description',
                 placeholder: 'Description',
@@ -33,6 +34,17 @@ export const createTaskModalFieldMap = () => {
                 id: 'dueDate',
                 required: true,
             }
+        },
+        {
+            type: 'select',
+            attributes: {
+                name: 'Select Project',
+                placeholder: 'Select Project',
+                'aria-label': 'Select Project',
+                id: 'project',
+                required: true,
+            },
+            options: ['inbox', ...projectList]
         },
         {
             type: 'submit',

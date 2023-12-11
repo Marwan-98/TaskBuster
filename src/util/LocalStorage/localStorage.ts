@@ -27,6 +27,10 @@ export const getLocalViewOptions = (activeView: string) => {
     return false;
 }
 
-export const setLocalTaskList = (list: Task[]) => {
-    localStorage.setItem('taskList', JSON.stringify(list));
+export const setLocalTaskList = (taskList: Task[]) => {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+}
+
+export const setLocalProjectList = (projectList: string[]) => {
+    localStorage.setItem('projectList', JSON.stringify(projectList));
 }

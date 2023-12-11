@@ -4,9 +4,10 @@ type FieldReactEvents<T> = Omit<DOMAttributes<T>, 'children' | 'dangerouslySetIn
 
 export type FormField = {
     type: string;
-    attributes: AllHTMLAttributes<HTMLInputElement | HTMLSelectElement | HTMLButtonElement>,
-    events?: FieldReactEvents<HTMLInputElement | HTMLSelectElement | HTMLButtonElement>,
+    attributes: AllHTMLAttributes<HTMLInputElement | HTMLSelectElement | HTMLButtonElement | HTMLTextAreaElement>,
+    events?: FieldReactEvents<HTMLInputElement | HTMLSelectElement | HTMLButtonElement | HTMLTextAreaElement>,
     renderLabel?: boolean
+    options?: string[]
 }
 
 

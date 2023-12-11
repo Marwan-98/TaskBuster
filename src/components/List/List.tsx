@@ -14,6 +14,7 @@ import { setLocalTaskList } from "../../util/LocalStorage/localStorage";
 const List = (): ReactElement => {
   const currentPage = getCurrentDirectory(useLocation());
 
+  const projectList = useAppSelector((state) => state.projects.value);
   const list = useAppSelector(state => state.list.value);
   const { [currentPage]: { sort = 'title', filter = 'all' } = {} } = useAppSelector(state => state.list.viewOptions);
 
@@ -36,14 +37,14 @@ const List = (): ReactElement => {
     dispatch(checkTask(index))
   };
 
-  const handleSubmit = ({title, description, dueDate}: Record<string, string>) => {
-    dispatch(updateTask({ title, description, dueDate }))
+  const handleSubmit = ({title, description, dueDate, project}: Record<string, string>) => {
+    dispatch(updateTask({ title, description, dueDate, project }))
     setShowModal(false);
   }
 
   const fieldMap = updateTaskModalFieldMap({
-    handleDelete,
-  })
+    handleDelete
+  }, projectList)
 
   const getTasks = () => {
     let sortedList = [...list];
@@ -71,6 +72,8 @@ const List = (): ReactElement => {
       }
     }
 
+    sortedList = sortedList.filter((task) => task.project === currentPage);
+
     return sortedList;
   }
 
@@ -87,7 +90,7 @@ const List = (): ReactElement => {
       </div>
       <ul className="List">
         {
-          getTasks().map(({ id, title, description, dueDate, completed }) => (
+          getTasks().map(({ id, title, description, dueDate, completed, project }) => (
               <Task
                 key={id}
                 taskId={id}
@@ -95,6 +98,7 @@ const List = (): ReactElement => {
                 description={description}
                 dueDate={dueDate}
                 completed={completed}
+                project={project}
                 handleCheck={handleCheck}
                 setShowModal={setShowModal}
                 setFormValues={setFormValues}

@@ -1,4 +1,6 @@
-export const updateTaskModalFieldMap = (events: Record<string, () => void>) => {
+import { FormField } from "../Form/Form.type";
+
+export const updateTaskModalFieldMap = (events: Record<string, () => void>, projectList: string[]): FormField[] => {
     const { handleDelete } = events;
 
     return [
@@ -15,7 +17,7 @@ export const updateTaskModalFieldMap = (events: Record<string, () => void>) => {
             }
         },
         {
-            type: 'text',
+            type: 'text-area',
             attributes: {
                 name: 'Description',
                 placeholder: 'Description',
@@ -34,6 +36,17 @@ export const updateTaskModalFieldMap = (events: Record<string, () => void>) => {
                 id: 'dueDate',
                 required: true,
             }
+        },
+        {
+            type: 'select',
+            attributes: {
+                name: 'Select Project',
+                placeholder: 'Select Project',
+                'aria-label': 'Select Project',
+                id: 'project',
+                required: true,
+            },
+            options: ['inbox', ...projectList]
         },
         {
             type: 'submit',

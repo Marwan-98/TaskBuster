@@ -23,7 +23,8 @@ export const listSlice = createSlice({
                 title,
                 description,
                 dueDate,
-                completed = false
+                completed = false,
+                project
             } } = action;
 
             state.value = [
@@ -33,7 +34,8 @@ export const listSlice = createSlice({
                     title,
                     description,
                     dueDate,
-                    completed
+                    completed,
+                    project
                 }
             ]
         },
@@ -54,6 +56,7 @@ export const listSlice = createSlice({
                 title,
                 description,
                 dueDate,
+                project
             } } = action;
 
             state.value = state.value.map((task) => {
@@ -62,7 +65,8 @@ export const listSlice = createSlice({
                         ...task,
                         title,
                         description,
-                        dueDate
+                        dueDate,
+                        project
                     }
                 }
 

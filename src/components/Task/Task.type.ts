@@ -4,6 +4,7 @@ export type TaskProps = {
     description: string,
     dueDate: string,
     completed: boolean,
+    project: string,
     setActiveTask: (id: string) => void,
     setShowModal: (val: boolean) => void,
     setFormValues: React.Dispatch<React.SetStateAction<null | Record<string,string>>>,
@@ -16,4 +17,5 @@ export type Task = {
     description: string;
     dueDate: string;
     completed: boolean;
+    project: string
 }

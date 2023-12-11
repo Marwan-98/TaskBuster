@@ -13,6 +13,7 @@ const Task = (
     description,
     dueDate,
     completed,
+    project,
     handleCheck,
     setActiveTask,
     setShowModal,
@@ -31,6 +32,7 @@ const Task = (
     title,
     description,
     dueDate,
+    project
   }
 
   const handleTaskClick = (taskId: string) => {

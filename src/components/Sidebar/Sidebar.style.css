@@ -12,18 +12,36 @@
     z-index: 10;
 }
 
-.SideBar-List li {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-block: 10px;
+.SideBar-List {
+    padding-inline: 40px;
 }
 
 .SideBar-List li a {
-    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-block: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.SideBar-List li a:hover {
+    background-color: var(--black-color-hover);
 }
 
 .showNav {
     left: 0;
     transition: linear 200ms;
+}
+
+.Projects-Heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 40px;
+}
+
+.Projects-Heading button {
+    height: 24px;
+    padding: 0;
 }

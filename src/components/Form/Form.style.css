@@ -8,6 +8,10 @@ form div {
     gap: 10px;
 }
 
-form div:not(:first-child,:last-child) {
-    margin-block: 50px;
+form div:not(:first-child) {
+    margin-block-start: 30px;
+}
+
+form textarea {
+    resize: none;
 }
