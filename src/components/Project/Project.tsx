@@ -4,8 +4,9 @@ import EditIcon from "../EditIcon/EditIcon";
 import { useAppDispatch } from "../../store/hooks";
 import { deleteProject, selectProject } from "../../store/project/projectSlice";
 import { ProjectProps } from "./Project.type";
+import { showModal } from "../../store/modal/modalSlice";
 
-const Project = ({setFormValues, setShowModal, project}: ProjectProps) => {
+const Project = ({setFormValues, project}: ProjectProps) => {
     const dispatch = useAppDispatch();
 
     const formValues = {
@@ -17,7 +18,7 @@ const Project = ({setFormValues, setShowModal, project}: ProjectProps) => {
 
         setFormValues(formValues);
         dispatch(selectProject(id));
-        setShowModal(true);
+        dispatch(showModal("UPDATE_MODAL"));
     }
 
     const handleDelete = () => {

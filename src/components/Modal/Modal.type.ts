@@ -1,6 +1,5 @@
 export type ModalProps = {
+    id: string,
     children: JSX.Element,
     title: string,
-    showModal: boolean,
-    setShowModal: (state: boolean) => void
 }

@@ -5,7 +5,6 @@ export interface ProjectType {
 
 export type ProjectProps = {
     project: ProjectType,
-    setShowModal: (val: boolean) => void,
     setFormValues: React.Dispatch<React.SetStateAction<null | Record<string,string>>>,
 }
 

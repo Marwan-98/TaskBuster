@@ -14,12 +14,12 @@ import Button from '../Button/Button';
 import AddIcon from '../AddIcon/AddIcon';
 import Project from '../Project/Project';
 import { v4 as uuidv4 } from 'uuid';
+import { showModal } from '../../store/modal/modalSlice';
 
 const Sidebar = () => {
   const projectList = useAppSelector((state) => state.projects.value);
 
   const { showNav } = useContext(ShowNavContext)!;
-  const [ showModal, setShowModal ] = useState(false);
   const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
 
   const dispatch = useAppDispatch();
@@ -33,14 +33,14 @@ const Sidebar = () => {
       id: uuidv4(),
       name,
     }));
-    setShowModal(false);
+    dispatch(showModal(""))
   }
 
   const handleProjectUpdate = ({ title: name }: Record<string, string>) => {
     dispatch(updateProject({
       name
     }));
-    setShowModal(false);
+    dispatch(showModal(""))
   }
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Sidebar = () => {
 
                   <div className='Projects-Heading'>
                     <h3>Projects</h3>
-                    <Button title='Add Task' onClick={ () => setShowModal(true) } icon={<AddIcon />} />
+                    <Button title='Add Task' onClick={ () => dispatch(showModal("CREATE_MODAL")) } icon={<AddIcon />} />
                   </div>
 
                   <ul className="SideBar-List" id='projects'>
@@ -72,7 +72,6 @@ const Sidebar = () => {
                         key={project.id}
                         project={project}
                         setFormValues={ setFormValues }
-                        setShowModal={ setShowModal }
                       />
                     )) }
                   </ul>
@@ -80,9 +79,8 @@ const Sidebar = () => {
           </section>
       </aside>
       <Modal
+        id="CREATE_MODAL"
         title="Create Project"
-        showModal={ showModal }
-        setShowModal={ setShowModal }
       >
         <Form
           fieldMap={ fieldMap }
@@ -91,9 +89,8 @@ const Sidebar = () => {
         />
       </Modal>
       <Modal
+        id="UPDATE_MODAL"
         title="Update Project"
-        showModal={ showModal }
-        setShowModal={ setShowModal }
       >
         <Form
           fieldMap={ fieldMap }
