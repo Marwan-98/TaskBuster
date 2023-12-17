@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 import './Main.style.css';
-import { ReactElement, useContext, useState } from "react";
+import { ReactElement, useContext } from "react";
 import { ShowNavContext, ShowNavContextType } from "../../context/ShowNavContext";
 import classNames from "classnames";
 import Modal from "../Modal/Modal";
@@ -12,12 +12,13 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addTask } from "../../store/list/listSlice";
 import { getCurrentDirectory } from "../../util/Url/url";
 import List from "../List/List";
+import { showModal } from "../../store/modal/modalSlice";
+import { CREATE_TASK_MODAL } from "../MainHeader/MainHeader.config";
 
 const Main = (): ReactElement => {
   const projectList = useAppSelector((state) => state.projects.value);
   const { showNav } = useContext(ShowNavContext) as ShowNavContextType;
   const dispatch = useAppDispatch();
-  const [ showModal, setShowModal ] = useState(false);
   const currentPage = getCurrentDirectory(useLocation());
 
   const className = classNames("Main", { showNav: !showNav });
@@ -31,7 +32,7 @@ const Main = (): ReactElement => {
       completed: false,
       project,
     }));
-    setShowModal(false);
+    dispatch(showModal(''));
   }
 
   const findProject = [{ name: 'inbox' }, ...projectList].find((project) => project.name === currentPage);
@@ -46,7 +47,7 @@ const Main = (): ReactElement => {
 
   return (
     <main className={ className }>
-      <MainHeader setShowModal={ setShowModal } title={ currentPage } />
+      <MainHeader title={ currentPage } />
       <Routes>
         <Route path="*" element={ <Navigate to="/inbox" /> } />
         <Route path="/inbox" element={ <List /> } />
@@ -56,9 +57,8 @@ const Main = (): ReactElement => {
         </Route>
       </Routes>
       <Modal
+        id={CREATE_TASK_MODAL}
         title="Create New Task"
-        showModal={ showModal }
-        setShowModal={ setShowModal }
       >
         <Form
           fieldMap={ createTaskModalFieldMap({projectList}) }

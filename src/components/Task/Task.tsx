@@ -5,6 +5,8 @@ import ClockIcon from '../ClockIcon/ClockIcon';
 import { TaskProps } from './Task.type';
 import { useAppDispatch } from '../../store/hooks';
 import { selectTask } from '../../store/list/listSlice';
+import { showModal } from '../../store/modal/modalSlice';
+import { UPDATE_TASK_MODAL } from '../List/List.config';
 
 const Task = (
   {
@@ -15,7 +17,6 @@ const Task = (
     completed,
     project,
     handleCheck,
-    setShowModal,
     setFormValues
   }: TaskProps
   ) => {
@@ -36,7 +37,7 @@ const Task = (
 
   const handleTaskClick = (taskId: string) => {
     setFormValues(formValues);
-    setShowModal(true);
+    dispatch(showModal(UPDATE_TASK_MODAL));
     dispatch(selectTask(taskId));
   }
 

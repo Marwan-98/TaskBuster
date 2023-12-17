@@ -15,6 +15,7 @@ import AddIcon from '../AddIcon/AddIcon';
 import Project from '../Project/Project';
 import { v4 as uuidv4 } from 'uuid';
 import { showModal } from '../../store/modal/modalSlice';
+import { CREATE_PROJECT_MODAL, UPDATE_PROJECT_MODAL } from './Sidebar.config';
 
 const Sidebar = () => {
   const projectList = useAppSelector((state) => state.projects.value);
@@ -63,7 +64,7 @@ const Sidebar = () => {
 
                   <div className='Projects-Heading'>
                     <h3>Projects</h3>
-                    <Button title='Add Task' onClick={ () => dispatch(showModal("CREATE_MODAL")) } icon={<AddIcon />} />
+                    <Button title='Add Task' onClick={ () => dispatch(showModal(CREATE_PROJECT_MODAL)) } icon={<AddIcon />} />
                   </div>
 
                   <ul className="SideBar-List" id='projects'>
@@ -79,7 +80,7 @@ const Sidebar = () => {
           </section>
       </aside>
       <Modal
-        id="CREATE_MODAL"
+        id={CREATE_PROJECT_MODAL}
         title="Create Project"
       >
         <Form
@@ -89,7 +90,7 @@ const Sidebar = () => {
         />
       </Modal>
       <Modal
-        id="UPDATE_MODAL"
+        id={UPDATE_PROJECT_MODAL}
         title="Update Project"
       >
         <Form

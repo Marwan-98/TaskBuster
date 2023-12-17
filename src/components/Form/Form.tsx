@@ -7,7 +7,6 @@ const Form = ({fieldMap, onSubmit, formValues, formTitle}: FormProps): ReactElem
 
     const renderSelectInput = ({renderLabel, attributes, events, options = []}: FormField) => {
         const { name, id } = attributes;
-        console.log(formData)
 
         return (
             <div key={id} id={ id }>

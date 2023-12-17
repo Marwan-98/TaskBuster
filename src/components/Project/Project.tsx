@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { deleteProject, selectProject } from "../../store/project/projectSlice";
 import { ProjectProps } from "./Project.type";
 import { showModal } from "../../store/modal/modalSlice";
+import { UPDATE_PROJECT_MODAL } from "../Sidebar/Sidebar.config";
 
 const Project = ({setFormValues, project}: ProjectProps) => {
     const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ const Project = ({setFormValues, project}: ProjectProps) => {
 
         setFormValues(formValues);
         dispatch(selectProject(id));
-        dispatch(showModal("UPDATE_MODAL"));
+        dispatch(showModal(UPDATE_PROJECT_MODAL));
     }
 
     const handleDelete = () => {

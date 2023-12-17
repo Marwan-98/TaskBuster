@@ -10,6 +10,8 @@ import { checkTask, deleteTask, updateTask } from "../../store/list/listSlice";
 import { useLocation } from "react-router-dom";
 import { getCurrentDirectory } from "../../util/Url/url";
 import { setLocalTaskList } from "../../util/LocalStorage/localStorage";
+import { UPDATE_TASK_MODAL } from "./List.config";
+import { showModal } from "../../store/modal/modalSlice";
 
 const List = (): ReactElement => {
   const currentPage = getCurrentDirectory(useLocation());
@@ -19,7 +21,6 @@ const List = (): ReactElement => {
   const activeTask = useAppSelector(state => state.list.activeTask);
   const { [currentPage]: { sort = 'title', filter = 'all' } = {} } = useAppSelector(state => state.list.viewOptions);
 
-  const [ showModal, setShowModal ] = useState(false);
   const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
 
   const dispatch = useAppDispatch();
@@ -30,7 +31,7 @@ const List = (): ReactElement => {
 
   const handleDelete = () => {
     dispatch(deleteTask(activeTask!));
-    setShowModal(false);
+    dispatch(showModal(''));
   };
 
   const handleCheck = (index: string) => {
@@ -39,7 +40,7 @@ const List = (): ReactElement => {
 
   const handleSubmit = ({title, description, dueDate, project}: Record<string, string>) => {
     dispatch(updateTask({ title, description, dueDate, project }))
-    setShowModal(false);
+    dispatch(showModal(''));
   }
 
   const fieldMap = updateTaskModalFieldMap({
@@ -100,16 +101,14 @@ const List = (): ReactElement => {
                 completed={completed}
                 project={project}
                 handleCheck={handleCheck}
-                setShowModal={setShowModal}
                 setFormValues={setFormValues}
               />
           ))
         }
       </ul>
       <Modal
+        id={UPDATE_TASK_MODAL}
         title="Edit Task"
-        showModal={ showModal }
-        setShowModal={ setShowModal }
       >
         <Form
           fieldMap={ fieldMap }
