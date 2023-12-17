@@ -29,6 +29,17 @@
     background-color: var(--black-color-hover);
 }
 
+#projects li a {
+    justify-content: space-between;
+}
+
+#projects li span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 .showNav {
     left: 0;
     transition: linear 200ms;

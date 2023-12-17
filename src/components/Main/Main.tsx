@@ -51,7 +51,7 @@ const Main = (): ReactElement => {
           formTitle="CreateTask"
         />
       </Modal>
-      { useRoutes(["/inbox", "/completed", ...projectList].map(path => ({ path, element: <List /> }))) }
+      { useRoutes(["/inbox", "/completed", ...projectList.map(({ name }) => name)].map(path => ({ path, element: <List /> }))) }
     </main>
   )
 }

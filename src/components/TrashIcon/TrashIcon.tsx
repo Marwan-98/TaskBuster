@@ -1,11 +1,12 @@
-import { ReactElement } from "react"
+import { ComponentPropsWithoutRef, ReactElement } from "react"
 
-const TrashIcon = (): ReactElement => {
+const TrashIcon = (props: ComponentPropsWithoutRef<'svg'>): ReactElement => {
   return (
     <svg
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    { ...props }
   >
         <g id="SVGRepo_bgCarrier" strokeWidth={0} />
         <g

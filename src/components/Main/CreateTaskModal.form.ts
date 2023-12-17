@@ -1,6 +1,7 @@
 import { FormField } from "../Form/Form.type";
+import { ProjectType } from "../Project/Project.type";
 
-export const createTaskModalFieldMap = ({ projectList }: { projectList: string[] }): FormField[] => {
+export const createTaskModalFieldMap = ({ projectList }: { projectList: ProjectType[] }): FormField[] => {
     return [
         {
             type: 'text',
@@ -44,7 +45,7 @@ export const createTaskModalFieldMap = ({ projectList }: { projectList: string[]
                 id: 'project',
                 required: true,
             },
-            options: ['inbox', ...projectList]
+            options: ['inbox', ...projectList.map(({ name }) => name)]
         },
         {
             type: 'submit',

@@ -15,7 +15,6 @@ const Task = (
     completed,
     project,
     handleCheck,
-    setActiveTask,
     setShowModal,
     setFormValues
   }: TaskProps
@@ -38,7 +37,6 @@ const Task = (
   const handleTaskClick = (taskId: string) => {
     setFormValues(formValues);
     setShowModal(true);
-    setActiveTask(taskId);
     dispatch(selectTask(taskId));
   }
 

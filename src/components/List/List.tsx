@@ -16,11 +16,11 @@ const List = (): ReactElement => {
 
   const projectList = useAppSelector((state) => state.projects.value);
   const list = useAppSelector(state => state.list.value);
+  const activeTask = useAppSelector(state => state.list.activeTask);
   const { [currentPage]: { sort = 'title', filter = 'all' } = {} } = useAppSelector(state => state.list.viewOptions);
 
   const [ showModal, setShowModal ] = useState(false);
   const [ formValues, setFormValues ] = useState<Record<string,string> | null>(null);
-  const [ activeTask, setActiveTask ] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
 
@@ -102,7 +102,6 @@ const List = (): ReactElement => {
                 handleCheck={handleCheck}
                 setShowModal={setShowModal}
                 setFormValues={setFormValues}
-                setActiveTask={setActiveTask}
               />
           ))
         }

@@ -1,3 +1,4 @@
+import { ProjectType } from "../../components/Project/Project.type";
 import { Task } from "../../components/Task/Task.type";
 import { viewOptionsType } from "./localStorage.config";
 
@@ -31,6 +32,6 @@ export const setLocalTaskList = (taskList: Task[]) => {
     localStorage.setItem('taskList', JSON.stringify(taskList));
 }
 
-export const setLocalProjectList = (projectList: string[]) => {
+export const setLocalProjectList = (projectList: ProjectType[]) => {
     localStorage.setItem('projectList', JSON.stringify(projectList));
 }
