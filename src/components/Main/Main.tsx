@@ -1,5 +1,4 @@
-import { Navigate, Route, Routes, useLocation, useRoutes } from "react-router-dom"
-import List from "../List/List"
+import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 import './Main.style.css';
 import { ReactElement, useContext, useState } from "react";
 import { ShowNavContext, ShowNavContextType } from "../../context/ShowNavContext";
@@ -12,6 +11,7 @@ import MainHeader from "../MainHeader/MainHeader";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addTask } from "../../store/list/listSlice";
 import { getCurrentDirectory } from "../../util/Url/url";
+import List from "../List/List";
 
 const Main = (): ReactElement => {
   const projectList = useAppSelector((state) => state.projects.value);
@@ -34,12 +34,27 @@ const Main = (): ReactElement => {
     setShowModal(false);
   }
 
+  const findProject = [{ name: 'inbox' }, ...projectList].find((project) => project.name === currentPage);
+
+  if (!findProject) {
+    return (
+      <main className={ className }>
+        <h1>No Project Found!</h1>
+      </main>
+    );
+  }
+
   return (
     <main className={ className }>
-      <Routes>
-        <Route path="/" element={ <Navigate to="/inbox" /> } />
-      </Routes>
       <MainHeader setShowModal={ setShowModal } title={ currentPage } />
+      <Routes>
+        <Route path="*" element={ <Navigate to="/inbox" /> } />
+        <Route path="/inbox" element={ <List /> } />
+        <Route path="/completed" element={ <List /> } />
+        <Route path="/projects">
+          <Route path=":id" element={<List />} />
+        </Route>
+      </Routes>
       <Modal
         title="Create New Task"
         showModal={ showModal }
@@ -51,7 +66,6 @@ const Main = (): ReactElement => {
           formTitle="CreateTask"
         />
       </Modal>
-      { useRoutes(["/inbox", "/completed", ...projectList.map(({ name }) => name)].map(path => ({ path, element: <List /> }))) }
     </main>
   )
 }

@@ -16,9 +16,9 @@ const projectSlice = createSlice({
     initialState,
     reducers: {
         addProject: (state, action: PayloadAction<ProjectType>) => {
-            const { payload: title } = action;
+            const { payload: project } = action;
 
-            state.value = [...state.value, title]
+            state.value = [...state.value, project]
         },
         selectProject: (state, action: PayloadAction<string>) => {
             const { payload: id } = action;

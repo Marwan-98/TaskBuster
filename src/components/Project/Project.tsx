@@ -29,7 +29,7 @@ const Project = ({setFormValues, setShowModal, project}: ProjectProps) => {
 
     return (
         <li>
-            <Link to={`/${project.name}`}>
+            <Link to={`/projects/${project.name}`}>
                 {project.name}
                 <span>
                     <TrashIcon height={25} onClick={ handleDelete }/>

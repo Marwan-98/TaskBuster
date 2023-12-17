@@ -1,6 +1,7 @@
 import { FormField } from "../Form/Form.type";
+import { ProjectType } from "../Project/Project.type";
 
-export const updateTaskModalFieldMap = (events: Record<string, () => void>, projectList: string[]): FormField[] => {
+export const updateTaskModalFieldMap = (events: Record<string, () => void>, projectList: ProjectType[]): FormField[] => {
     const { handleDelete } = events;
 
     return [
@@ -46,7 +47,7 @@ export const updateTaskModalFieldMap = (events: Record<string, () => void>, proj
                 id: 'project',
                 required: true,
             },
-            options: ['inbox', ...projectList]
+            options: ['inbox', ...projectList.map(({ name }) => name)]
         },
         {
             type: 'submit',
