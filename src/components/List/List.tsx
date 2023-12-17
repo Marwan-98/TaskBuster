@@ -10,7 +10,7 @@ import { checkTask, deleteTask, updateTask } from "../../store/list/listSlice";
 import { useLocation } from "react-router-dom";
 import { getCurrentDirectory } from "../../util/Url/url";
 import { setLocalTaskList } from "../../util/LocalStorage/localStorage";
-import { UPDATE_TASK_MODAL } from "./List.config";
+import { PRIORITY_LIST, UPDATE_TASK_MODAL } from "./List.config";
 import { showModal } from "../../store/modal/modalSlice";
 
 const List = (): ReactElement => {
@@ -52,6 +52,11 @@ const List = (): ReactElement => {
     switch (sort) {
       case "dueDate": {
         sortedList = sortedList.sort((taskA, taskB) => new Date(taskA.dueDate).getTime() - new Date(taskB.dueDate).getTime());
+        break;
+      }
+
+      case 'priority': {
+        sortedList = sortedList.sort((taskA, taskB) => PRIORITY_LIST.indexOf(taskB.priority) - PRIORITY_LIST.indexOf(taskA.priority));
         break;
       }
 

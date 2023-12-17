@@ -1,4 +1,5 @@
 import { FormField } from "../Form/Form.type";
+import { PRIORITY_LIST } from "../List/List.config";
 import { ProjectType } from "../Project/Project.type";
 
 export const createTaskModalFieldMap = ({ projectList }: { projectList: ProjectType[] }): FormField[] => {
@@ -56,7 +57,7 @@ export const createTaskModalFieldMap = ({ projectList }: { projectList: ProjectT
                 id: 'priority',
                 required: true,
             },
-            options: ['Low', 'Medium', 'High', 'Critical']
+            options: PRIORITY_LIST
         },
         {
             type: 'submit',

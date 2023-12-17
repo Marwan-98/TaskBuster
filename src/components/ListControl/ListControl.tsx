@@ -36,6 +36,7 @@ const ListControl = (): ReactElement => {
         <select id="sort" value={ sort } onChange={handleChange}>
           <option value="title">Title</option>
           <option value="dueDate">Date</option>
+          <option value="priority">Priority</option>
         </select>
       </div>
 
