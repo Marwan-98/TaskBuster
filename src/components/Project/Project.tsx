@@ -34,8 +34,8 @@ const Project = ({setFormValues, project}: ProjectProps) => {
             <Link to={`/projects/${project.name}`}>
                 {project.name}
                 <span>
-                    <TrashIcon height={25} onClick={ handleDelete }/>
                     <EditIcon onClick={ handleProjectClick }/>
+                    <TrashIcon height={25} onClick={ handleDelete }/>
                 </span>
             </Link>
         </li>

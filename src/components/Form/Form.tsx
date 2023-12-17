@@ -11,9 +11,9 @@ const Form = ({fieldMap, onSubmit, formValues, formTitle}: FormProps): ReactElem
         return (
             <div key={id} id={ id }>
                 {renderLabel && <label htmlFor={id}>{ name }</label>}
-                <select id={ id } {...attributes} {...events} onChange={(e) => handleChange(e)}>
+                <select id={ id } {...attributes} {...events} onChange={(e) => handleChange(e)} defaultValue={formValues && formValues[id ?? ''] || options[0] } >
                     { options.map((option, idx) => (
-                        <option key={idx} value={option} selected={ formValues && formValues[id ?? ''] ? option === formValues[id ?? ''] : option === options[0] }>{option}</option>
+                        <option key={idx} value={option}>{option}</option>
                     )) }
                 </select>
             </div>

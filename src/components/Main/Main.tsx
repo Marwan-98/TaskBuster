@@ -51,10 +51,7 @@ const Main = (): ReactElement => {
       <Routes>
         <Route path="*" element={ <Navigate to="/inbox" /> } />
         <Route path="/inbox" element={ <List /> } />
-        <Route path="/completed" element={ <List /> } />
-        <Route path="/projects">
-          <Route path=":id" element={<List />} />
-        </Route>
+        <Route path="/projects/:id" element={<List />} />
       </Routes>
       <Modal
         id={CREATE_TASK_MODAL}
