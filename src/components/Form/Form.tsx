@@ -4,7 +4,7 @@ import { FormField, FormProps } from './Form.type';
 
 const Form = ({fieldMap, onSubmit, formValues, formTitle}: FormProps): ReactElement => {
     let stateMap: Record<string, string> = {};
-
+console.log(formValues)
     const renderSelectInput = ({renderLabel, attributes, events, options = []}: FormField) => {
         const { name, id } = attributes;
 

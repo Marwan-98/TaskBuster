@@ -38,8 +38,8 @@ const List = (): ReactElement => {
     dispatch(checkTask(index))
   };
 
-  const handleSubmit = ({title, description, dueDate, project}: Record<string, string>) => {
-    dispatch(updateTask({ title, description, dueDate, project }))
+  const handleSubmit = ({title, description, dueDate, project, priority}: Record<string, string>) => {
+    dispatch(updateTask({ title, description, dueDate, project, priority }))
     dispatch(showModal(''));
   }
 
@@ -91,7 +91,7 @@ const List = (): ReactElement => {
       </div>
       <ul className="List">
         {
-          getTasks().map(({ id, title, description, dueDate, completed, project }) => (
+          getTasks().map(({ id, title, description, dueDate, completed, project, priority }) => (
               <Task
                 key={id}
                 taskId={id}
@@ -100,6 +100,7 @@ const List = (): ReactElement => {
                 dueDate={dueDate}
                 completed={completed}
                 project={project}
+                priority={priority}
                 handleCheck={handleCheck}
                 setFormValues={setFormValues}
               />

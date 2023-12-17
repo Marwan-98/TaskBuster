@@ -23,7 +23,7 @@ const Main = (): ReactElement => {
 
   const className = classNames("Main", { showNav: !showNav });
 
-  const createTask = ({title, description, dueDate, project}: Record<string, string>) => {
+  const createTask = ({title, description, dueDate, project, priority}: Record<string, string>) => {
     dispatch(addTask({
       id: uuidv4(),
       title,
@@ -31,6 +31,7 @@ const Main = (): ReactElement => {
       dueDate,
       completed: false,
       project,
+      priority
     }));
     dispatch(showModal(''));
   }

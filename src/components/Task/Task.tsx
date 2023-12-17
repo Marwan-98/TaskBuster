@@ -16,6 +16,7 @@ const Task = (
     dueDate,
     completed,
     project,
+    priority,
     handleCheck,
     setFormValues
   }: TaskProps
@@ -32,7 +33,8 @@ const Task = (
     title,
     description,
     dueDate,
-    project
+    project,
+    priority
   }
 
   const handleTaskClick = (taskId: string) => {

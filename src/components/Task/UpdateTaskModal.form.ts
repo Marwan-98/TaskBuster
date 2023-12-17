@@ -50,6 +50,17 @@ export const updateTaskModalFieldMap = (events: Record<string, () => void>, proj
             options: ['inbox', ...projectList.map(({ name }) => name)]
         },
         {
+            type: 'select',
+            attributes: {
+                name: 'Select Priority',
+                placeholder: 'Select Priority',
+                'aria-label': 'Select Priority',
+                id: 'priority',
+                required: true,
+            },
+            options: ['Low', 'Medium', 'High', 'Critical']
+        },
+        {
             type: 'submit',
             attributes: {
                 name: 'Update Task',
